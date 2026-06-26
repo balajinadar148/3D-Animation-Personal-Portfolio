@@ -3,11 +3,13 @@ import {
   FaInstagram,
   FaLinkedinIn,
   FaXTwitter,
+  FaGlobe,
 } from "react-icons/fa6";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
+import { portfolioData } from "../data/portfolioData";
 
 const SocialIcons = () => {
   useEffect(() => {
@@ -59,28 +61,43 @@ const SocialIcons = () => {
   return (
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
-        <span>
-          <a href="https://github.com" target="_blank">
-            <FaGithub />
-          </a>
-        </span>
-        <span>
-          <a href="https://www.linkedin.com" target="_blank">
-            <FaLinkedinIn />
-          </a>
-        </span>
-        <span>
-          <a href="https://x.com" target="_blank">
-            <FaXTwitter />
-          </a>
-        </span>
-        <span>
-          <a href="https://www.instagram.com" target="_blank">
-            <FaInstagram />
-          </a>
-        </span>
+        {portfolioData.contact.github && (
+          <span>
+            <a href={portfolioData.contact.github} target="_blank" rel="noreferrer">
+              <FaGithub />
+            </a>
+          </span>
+        )}
+        {portfolioData.contact.linkedin && (
+          <span>
+            <a href={portfolioData.contact.linkedin} target="_blank" rel="noreferrer">
+              <FaLinkedinIn />
+            </a>
+          </span>
+        )}
+        {portfolioData.contact.website && (
+          <span>
+            <a href={portfolioData.contact.website} target="_blank" rel="noreferrer" title="Website">
+              <FaGlobe />
+            </a>
+          </span>
+        )}
+        {(portfolioData.contact as any).twitter && (
+          <span>
+            <a href={(portfolioData.contact as any).twitter} target="_blank" rel="noreferrer">
+              <FaXTwitter />
+            </a>
+          </span>
+        )}
+        {(portfolioData.contact as any).instagram && (
+          <span>
+            <a href={(portfolioData.contact as any).instagram} target="_blank" rel="noreferrer">
+              <FaInstagram />
+            </a>
+          </span>
+        )}
       </div>
-      <a className="resume-button" href="#">
+      <a className="resume-button" href={portfolioData.contact.resumeUrl}>
         <HoverLinks text="RESUME" />
         <span>
           <TbNotes />

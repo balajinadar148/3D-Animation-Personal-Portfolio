@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/Navbar.css";
+import { portfolioData } from "../data/portfolioData";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 export let smoother: ScrollSmoother;
@@ -43,14 +44,14 @@ const Navbar = () => {
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          Logo
+          {portfolioData.personal.logoText}
         </a>
         <a
-          href="mailto:example@mail.com"
+          href={`mailto:${portfolioData.contact.email}`}
           className="navbar-connect"
           data-cursor="disable"
         >
-          example@mail.com
+          {portfolioData.contact.email}
         </a>
         <ul>
           <li>

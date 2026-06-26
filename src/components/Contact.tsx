@@ -1,5 +1,6 @@
 import { MdArrowOutward, MdCopyright } from "react-icons/md";
 import "./styles/Contact.css";
+import { portfolioData } from "../data/portfolioData";
 
 const Contact = () => {
   return (
@@ -10,58 +11,83 @@ const Contact = () => {
           <div className="contact-box">
             <h4>Email</h4>
             <p>
-              <a href="mailto:example@mail.com" data-cursor="disable">
-                example@mail.com
+              <a href={`mailto:${portfolioData.contact.email}`} data-cursor="disable">
+                {portfolioData.contact.email}
               </a>
             </p>
             <h4>Phone</h4>
-            <p>
-              <a href="tel:+9199999999" data-cursor="disable">
-                +91 99999 99999
-              </a>
-            </p>
+            {portfolioData.contact.phones.map((phone, idx) => (
+              <p key={idx}>
+                <a href={`tel:${phone.replace(/\s+/g, "")}`} data-cursor="disable">
+                  {phone}
+                </a>
+              </p>
+            ))}
           </div>
           <div className="contact-box">
             <h4>Social</h4>
-            <a
-              href="https://github.com"
-              target="_blank"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Github <MdArrowOutward />
-            </a>
-            <a
-              href="https://www.linkedin.com"
-              target="_blank"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Linkedin <MdArrowOutward />
-            </a>
-            <a
-              href="https://x.com"
-              target="_blank"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Twitter <MdArrowOutward />
-            </a>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Instagram <MdArrowOutward />
-            </a>
+            {portfolioData.contact.github && (
+              <a
+                href={portfolioData.contact.github}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="disable"
+                className="contact-social"
+              >
+                Github <MdArrowOutward />
+              </a>
+            )}
+            {portfolioData.contact.linkedin && (
+              <a
+                href={portfolioData.contact.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="disable"
+                className="contact-social"
+              >
+                Linkedin <MdArrowOutward />
+              </a>
+            )}
+            {portfolioData.contact.website && (
+              <a
+                href={portfolioData.contact.website}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="disable"
+                className="contact-social"
+              >
+                Website <MdArrowOutward />
+              </a>
+            )}
+            {(portfolioData.contact as any).twitter && (
+              <a
+                href={(portfolioData.contact as any).twitter}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="disable"
+                className="contact-social"
+              >
+                Twitter <MdArrowOutward />
+              </a>
+            )}
+            {(portfolioData.contact as any).instagram && (
+              <a
+                href={(portfolioData.contact as any).instagram}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="disable"
+                className="contact-social"
+              >
+                Instagram <MdArrowOutward />
+              </a>
+            )}
           </div>
           <div className="contact-box">
             <h2>
-              Designed and Developed <br /> by <span>Moncy Yohannan</span>
+              Designed and Developed <br /> by <span>{portfolioData.personal.firstName} {portfolioData.personal.lastName}</span>
             </h2>
             <h5>
-              <MdCopyright /> 2024
+              <MdCopyright /> {portfolioData.contact.copyrightYear}
             </h5>
           </div>
         </div>
