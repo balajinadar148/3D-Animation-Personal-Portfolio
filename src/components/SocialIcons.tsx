@@ -1,15 +1,13 @@
 import {
   FaGithub,
-  FaInstagram,
   FaLinkedinIn,
-  FaXTwitter,
   FaGlobe,
 } from "react-icons/fa6";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
-import { portfolioData } from "../data/portfolioData";
+import { portfolioConfig } from "../data/config";
 
 const SocialIcons = () => {
   useEffect(() => {
@@ -61,50 +59,32 @@ const SocialIcons = () => {
   return (
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
-        {portfolioData.contact.github && (
-          <span>
-            <a href={portfolioData.contact.github} target="_blank" rel="noreferrer">
-              <FaGithub />
-            </a>
-          </span>
-        )}
-        {portfolioData.contact.linkedin && (
-          <span>
-            <a href={portfolioData.contact.linkedin} target="_blank" rel="noreferrer">
-              <FaLinkedinIn />
-            </a>
-          </span>
-        )}
-        {portfolioData.contact.website && (
-          <span>
-            <a href={portfolioData.contact.website} target="_blank" rel="noreferrer" title="Website">
-              <FaGlobe />
-            </a>
-          </span>
-        )}
-        {(portfolioData.contact as any).twitter && (
-          <span>
-            <a href={(portfolioData.contact as any).twitter} target="_blank" rel="noreferrer">
-              <FaXTwitter />
-            </a>
-          </span>
-        )}
-        {(portfolioData.contact as any).instagram && (
-          <span>
-            <a href={(portfolioData.contact as any).instagram} target="_blank" rel="noreferrer">
-              <FaInstagram />
-            </a>
-          </span>
-        )}
+        <span>
+          <a href={portfolioConfig.profile.socials.github} target="_blank">
+            <FaGithub />
+          </a>
+        </span>
+        <span>
+          <a href={portfolioConfig.profile.socials.linkedin} target="_blank">
+            <FaLinkedinIn />
+          </a>
+        </span>
+        <span>
+          <a href={portfolioConfig.profile.socials.website} target="_blank">
+            <FaGlobe />
+          </a>
+        </span>
       </div>
-      <a className="resume-button" href={portfolioData.contact.resumeUrl}>
+      <a className="resume-button" href={portfolioConfig.profile.resumeUrl} download="Balaji_Mageshwaran_Resume.pdf">
         <HoverLinks text="RESUME" />
         <span>
           <TbNotes />
         </span>
       </a>
+
     </div>
   );
 };
 
 export default SocialIcons;
+

@@ -1,6 +1,6 @@
 import { MdArrowOutward, MdCopyright } from "react-icons/md";
+import { portfolioConfig } from "../data/config";
 import "./styles/Contact.css";
-import { portfolioData } from "../data/portfolioData";
 
 const Contact = () => {
   return (
@@ -11,83 +11,54 @@ const Contact = () => {
           <div className="contact-box">
             <h4>Email</h4>
             <p>
-              <a href={`mailto:${portfolioData.contact.email}`} data-cursor="disable">
-                {portfolioData.contact.email}
+              <a href={`mailto:${portfolioConfig.profile.email}`} data-cursor="disable">
+                {portfolioConfig.profile.email}
               </a>
             </p>
             <h4>Phone</h4>
-            {portfolioData.contact.phones.map((phone, idx) => (
-              <p key={idx}>
-                <a href={`tel:${phone.replace(/\s+/g, "")}`} data-cursor="disable">
-                  {phone}
-                </a>
-              </p>
-            ))}
+            <p>
+              <a href="tel:7868964364" data-cursor="disable">
+                7868964364
+              </a>
+              {" / "}
+              <a href="tel:9168188997" data-cursor="disable">
+                9168188997
+              </a>
+            </p>
           </div>
           <div className="contact-box">
             <h4>Social</h4>
-            {portfolioData.contact.github && (
-              <a
-                href={portfolioData.contact.github}
-                target="_blank"
-                rel="noreferrer"
-                data-cursor="disable"
-                className="contact-social"
-              >
-                Github <MdArrowOutward />
-              </a>
-            )}
-            {portfolioData.contact.linkedin && (
-              <a
-                href={portfolioData.contact.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                data-cursor="disable"
-                className="contact-social"
-              >
-                Linkedin <MdArrowOutward />
-              </a>
-            )}
-            {portfolioData.contact.website && (
-              <a
-                href={portfolioData.contact.website}
-                target="_blank"
-                rel="noreferrer"
-                data-cursor="disable"
-                className="contact-social"
-              >
-                Website <MdArrowOutward />
-              </a>
-            )}
-            {(portfolioData.contact as any).twitter && (
-              <a
-                href={(portfolioData.contact as any).twitter}
-                target="_blank"
-                rel="noreferrer"
-                data-cursor="disable"
-                className="contact-social"
-              >
-                Twitter <MdArrowOutward />
-              </a>
-            )}
-            {(portfolioData.contact as any).instagram && (
-              <a
-                href={(portfolioData.contact as any).instagram}
-                target="_blank"
-                rel="noreferrer"
-                data-cursor="disable"
-                className="contact-social"
-              >
-                Instagram <MdArrowOutward />
-              </a>
-            )}
+            <a
+              href={portfolioConfig.profile.socials.github}
+              target="_blank"
+              data-cursor="disable"
+              className="contact-social"
+            >
+              Github <MdArrowOutward />
+            </a>
+            <a
+              href={portfolioConfig.profile.socials.linkedin}
+              target="_blank"
+              data-cursor="disable"
+              className="contact-social"
+            >
+              Linkedin <MdArrowOutward />
+            </a>
+            <a
+              href={portfolioConfig.profile.socials.website}
+              target="_blank"
+              data-cursor="disable"
+              className="contact-social"
+            >
+              Website <MdArrowOutward />
+            </a>
           </div>
           <div className="contact-box">
             <h2>
-              Designed and Developed <br /> by <span>{portfolioData.personal.firstName} {portfolioData.personal.lastName}</span>
+              Designed and Developed <br /> by <span>{portfolioConfig.profile.firstName} {portfolioConfig.profile.lastName}</span>
             </h2>
             <h5>
-              <MdCopyright /> {portfolioData.contact.copyrightYear}
+              <MdCopyright /> {new Date().getFullYear()}
             </h5>
           </div>
         </div>
@@ -97,3 +68,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

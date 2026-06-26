@@ -1,5 +1,5 @@
+import { portfolioConfig } from "../data/config";
 import "./styles/About.css";
-import { portfolioData } from "../data/portfolioData";
 
 const About = () => {
   return (
@@ -7,7 +7,7 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          {portfolioData.personal.aboutMe}
+          {portfolioConfig.profile.about}
         </p>
       </div>
     </div>
@@ -15,3 +15,4 @@ const About = () => {
 };
 
 export default About;
+

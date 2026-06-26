@@ -32,7 +32,7 @@ const Scene = () => {
         antialias: true,
       });
       renderer.setSize(container.width, container.height);
-      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1;
       canvasDiv.current.appendChild(renderer.domElement);
@@ -106,8 +106,20 @@ const Scene = () => {
         landingDiv.addEventListener("touchstart", onTouchStart);
         landingDiv.addEventListener("touchend", onTouchEnd);
       }
+
+      let isVisible = true;
+      const observer = new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting;
+      }, { threshold: 0.01 });
+
+      if (canvasDiv.current) {
+        observer.observe(canvasDiv.current);
+      }
+
       const animate = () => {
         requestAnimationFrame(animate);
+        if (!isVisible) return;
+
         if (headBone) {
           handleHeadRotation(
             headBone,
@@ -134,6 +146,7 @@ const Scene = () => {
           handleResize(renderer, camera, canvasDiv, character!)
         );
         if (canvasDiv.current) {
+          observer.unobserve(canvasDiv.current);
           canvasDiv.current.removeChild(renderer.domElement);
         }
         if (landingDiv) {
@@ -142,6 +155,8 @@ const Scene = () => {
           landingDiv.removeEventListener("touchend", onTouchEnd);
         }
       };
+
+
     }
   }, []);
 

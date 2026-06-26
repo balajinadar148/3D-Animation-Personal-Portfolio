@@ -81,3 +81,25 @@
     font-size: 18px;
   }
 }
+
+.logo-img {
+  height: 18px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+@media only screen and (min-width: 500px) {
+  .logo-img {
+    height: 24px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .logo-img {
+    height: 34px;
+  }
+}
+
+
+
+
+

@@ -16,11 +16,19 @@ const setCharacter = (
   const loadCharacter = () => {
     return new Promise<GLTF | null>(async (resolve, reject) => {
       try {
-        const encryptedBlob = await decryptFile(
-          "/models/character.enc",
-          "Character3D#@"
-        );
-        const blobUrl = URL.createObjectURL(new Blob([encryptedBlob]));
+        let blobUrl: string;
+
+        // Fallback for non-secure contexts (e.g. LAN IP over HTTP) where Web Crypto Subtle is unavailable
+        if (window.crypto && window.crypto.subtle) {
+          const encryptedBlob = await decryptFile(
+            "/models/character.enc",
+            "Character3D#@"
+          );
+          blobUrl = URL.createObjectURL(new Blob([encryptedBlob]));
+        } else {
+          console.warn("Web Crypto API is not available (non-secure context). Loading unencrypted GLB fallback.");
+          blobUrl = "/models/character.glb";
+        }
 
         let character: THREE.Object3D;
         loader.load(
@@ -55,6 +63,7 @@ const setCharacter = (
       }
     });
   };
+
 
   return { loadCharacter };
 };

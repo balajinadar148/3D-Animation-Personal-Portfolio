@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
+import { portfolioConfig } from "../data/config";
 import "./styles/WhatIDo.css";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { portfolioData } from "../data/portfolioData";
 
 const WhatIDo = () => {
   const containerRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -59,11 +59,11 @@ const WhatIDo = () => {
               />
             </svg>
           </div>
-          {portfolioData.whatIDo.map((item, index) => (
+          {portfolioConfig.services.map((service, index) => (
             <div
               className="what-content what-noTouch"
-              key={index}
               ref={(el) => setRef(el, index)}
+              key={index}
             >
               <div className="what-border1">
                 <svg height="100%">
@@ -92,13 +92,13 @@ const WhatIDo = () => {
               <div className="what-corner"></div>
 
               <div className="what-content-in">
-                <h3>{item.title}</h3>
+                <h3>{service.title}</h3>
                 <h4>Description</h4>
-                <p>{item.description}</p>
+                <p>{service.description}</p>
                 <h5>Skillset & tools</h5>
                 <div className="what-content-flex">
-                  {item.skills.map((skill, idx) => (
-                    <div className="what-tags" key={idx}>
+                  {service.skills.map((skill, sIdx) => (
+                    <div className="what-tags" key={sIdx}>
                       {skill}
                     </div>
                   ))}
@@ -129,3 +129,4 @@ function handleClick(container: HTMLDivElement) {
     });
   }
 }
+
